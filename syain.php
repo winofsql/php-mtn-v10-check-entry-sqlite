@@ -49,6 +49,31 @@ if ( $_POST["btn"] == "確認" ) {
         $_POST["kanri_name"] = $row["管理者名"];
         $_POST["birth"] = $row["生年月日"];
 
+        $syozoku_option = "";
+        $query = <<<QUERY
+    select * from コード名称マスタ where 区分 = 2
+    QUERY;
+    
+        try {
+            $stmt = $sqlite->prepare($query);
+            $stmt->execute();
+        }
+        catch ( PDOException $e ) {
+            $GLOBALS["error"]["db"] .= $GLOBALS["dbname"];
+            $GLOBALS["error"]["db"] .= " " . $e->getMessage();
+        }
+    
+    
+        while ( $row = $stmt->fetch() ) {
+            if ( $_POST["syozoku"] == $row["コード"] ) {
+                $syozoku_option .=
+                    "<option selected value='{$row["コード"]}'>{$row["名称"]}</option>";
+            }
+            else {
+                $syozoku_option .=
+                    "<option value='{$row[0]}'>{$row["名称"]}</option>";
+            }
+        }        
     }
     else {
         $_POST["sname"] = "";
