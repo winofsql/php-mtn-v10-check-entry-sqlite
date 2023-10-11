@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+#content {
+    margin: 26px;
+}
+
+.entry {
+    display: inline-block;
+}
+.left {
+    width: 100px;
+}
+.right {
+    width: 300px;
+}
+
+/* 小さなテキスト入力サイズ */
+.w100 {
+    width:100px;
+}
+/* その他サイズ */
+.w200 {
+    width:200px;
+}
+
+/* 入力の行間隔 */
+.entry {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border: 1px solid #000000;
+}
